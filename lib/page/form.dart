@@ -24,7 +24,7 @@ class _MyFormPageState extends State<MyFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form'),
+        title: const Text('Form'),
       ),
       // Menambahkan drawer menu
       drawer: Drawer(
@@ -44,12 +44,20 @@ class _MyFormPageState extends State<MyFormPage> {
             ListTile(
               title: const Text('Form'),
               onTap: () {
+                // Route menu ke halaman utama
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('To Do'),
+              onTap: () {
                 // Route menu ke halaman form
-                Navigator.pop(context);
-                // Navigator.pushReplacement(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const MyFormPage()),
-                // );
+                Navigator.pop(
+                  context,
+                );
               },
             ),
           ],
@@ -216,10 +224,6 @@ class _MyFormPageState extends State<MyFormPage> {
                   secondary: const Icon(Icons.run_circle_outlined),
                 ),
                 TextButton(
-                  child: const Text(
-                    "Simpan",
-                    style: TextStyle(color: Colors.white),
-                  ),
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
@@ -233,48 +237,52 @@ class _MyFormPageState extends State<MyFormPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             elevation: 15,
-                            child: Container(
-                              child: ListView(
-                                padding:
-                                    const EdgeInsets.only(top: 20, bottom: 20),
-                                shrinkWrap: true,
-                                children: <Widget>[
-                                  const Center(child: Text('Informasi Data')),
-                                  const SizedBox(height: 20),
-                                  // TODO: Munculkan informasi yang didapat dari form
-                                  Center(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Nama: $_namaLengkap",
-                                          style: TextStyle(color: Colors.blue),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Text(
-                                          "Umur: $umur",
-                                          style: TextStyle(color: Colors.blue),
-                                        ),
-                                      ],
-                                    ),
+                            child: ListView(
+                              padding:
+                                  const EdgeInsets.only(top: 20, bottom: 20),
+                              shrinkWrap: true,
+                              children: <Widget>[
+                                const Center(child: Text('Informasi Data')),
+                                const SizedBox(height: 20),
+                                // TODO: Munculkan informasi yang didapat dari form
+                                Center(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Nama: $_namaLengkap",
+                                        style:
+                                            const TextStyle(color: Colors.blue),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Text(
+                                        "Umur: $umur",
+                                        style:
+                                            const TextStyle(color: Colors.blue),
+                                      ),
+                                    ],
                                   ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text('Kembali'),
-                                  ),
-                                ],
-                              ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Kembali'),
+                                ),
+                              ],
                             ),
                           );
                         },
                       );
                     }
                   },
+                  child: const Text(
+                    "Simpan",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
